@@ -1,7 +1,10 @@
 mod file_indexers;
-
-// use std::fs::Metadata;s
+mod file_metadata;
+use file_metadata::FileMetadata;
+use std::collections::HashMap;
 use std::time::Instant;
+mod file_searchers;
+use file_searchers::file_search;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let start = Instant::now();
@@ -14,5 +17,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("Indexing in Progress...");
     let duration = start.elapsed();
     println!("Time taken: {} ms", duration.as_millis());
+
+    println!("Searching for files...");
+    let start = Instant::now();
+    file_search("OrdinaryGetOwnProperty", &file_index);
+    let duration = start.elapsed();
+    println!("Time taken: {} ms", duration.as_millis());
+
     Ok(())
 }

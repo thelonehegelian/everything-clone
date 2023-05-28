@@ -1,18 +1,9 @@
+use crate::file_metadata::FileMetadata;
 use rayon::prelude::*;
 use std::collections::{BTreeMap, HashMap};
 use std::path::PathBuf;
 use std::time::SystemTime;
 use walkdir::WalkDir;
-
-#[derive(Debug)]
-#[allow(dead_code)]
-pub struct FileMetadata {
-    name: String,
-    size: u64,
-    created: SystemTime,
-    modified: SystemTime,
-    accessed: SystemTime,
-}
 
 pub fn create_hash_index() -> HashMap<String, FileMetadata> {
     let mut files: HashMap<String, FileMetadata> = HashMap::new();
@@ -82,7 +73,7 @@ pub fn create_b_index() -> BTreeMap<PathBuf, FileMetadata> {
 
 // @note almost twice as fast as the sequential version, especially on large directories
 pub fn create_hash_index_parallel() -> HashMap<String, FileMetadata> {
-    let files: HashMap<String, FileMetadata> = WalkDir::new("../..")
+    let files: HashMap<String, FileMetadata> = WalkDir::new("../")
         .into_iter()
         .filter_map(|e| e.ok())
         .par_bridge() // Convert iterator to a parallel iterator
