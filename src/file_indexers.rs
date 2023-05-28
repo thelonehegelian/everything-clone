@@ -1,11 +1,11 @@
 use rayon::prelude::*;
 use std::collections::{BTreeMap, HashMap};
-use std::path::Path;
 use std::path::PathBuf;
 use std::time::SystemTime;
 use walkdir::WalkDir;
 
 #[derive(Debug)]
+#[allow(dead_code)]
 pub struct FileMetadata {
     name: String,
     size: u64,
