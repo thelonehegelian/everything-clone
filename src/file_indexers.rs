@@ -73,7 +73,7 @@ pub fn create_b_index() -> BTreeMap<PathBuf, FileMetadata> {
 
 // @note almost twice as fast as the sequential version, especially on large directories
 pub fn create_hash_index_parallel() -> HashMap<String, FileMetadata> {
-    let files: HashMap<String, FileMetadata> = WalkDir::new("../")
+    let files: HashMap<String, FileMetadata> = WalkDir::new("../..")
         .into_iter()
         .filter_map(|e| e.ok())
         .par_bridge() // Convert iterator to a parallel iterator
