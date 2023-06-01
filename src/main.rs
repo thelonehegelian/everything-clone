@@ -6,7 +6,7 @@ use std::time::Instant;
 mod file_searchers;
 use file_searchers::{display_results, file_search};
 mod cache_file_index;
-use cache_file_index::create_and_cache_file_index;
+use cache_file_index::create_and_cache_file_index_json;
 use std::fs;
 use std::fs::File;
 use std::io::{self, BufRead};
@@ -16,7 +16,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // create_b_index();
     // let file_index = file_indexers::create_hash_index();
     // let file_index = file_indexers::create_hash_index_parallel();
-    let file_index = create_and_cache_file_index()?;
+    let file_index = create_and_cache_file_index_json()?;
     // let file_index = load_cached_file_index()?;
 
     // count the number of files in the index

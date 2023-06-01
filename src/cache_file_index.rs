@@ -6,7 +6,7 @@ use std::fs;
 use std::fs::File;
 use std::io::{self, BufRead, Write};
 
-pub fn create_and_cache_file_index(
+pub fn create_and_cache_file_index_json(
 ) -> Result<HashMap<String, FileMetadata>, Box<dyn std::error::Error>> {
     match fs::metadata("file_index_cache.json") {
         Ok(metadata) if metadata.is_file() => {
@@ -38,12 +38,6 @@ pub fn create_and_cache_file_index(
 }
 
 fn load_cached_file_index() -> Result<HashMap<String, FileMetadata>, Box<dyn std::error::Error>> {
-    // Check if the file exists
-    // @todo uncomment this after creating a command line argument to create the file index
-    // if !fs::metadata("file_index.json")?.is_file() {
-    //     return Err("File index not found".into());
-    // }
-
     // Read the JSON from the file
     let file = File::open("file_index_cache.json")?;
     let reader = io::BufReader::new(file);
