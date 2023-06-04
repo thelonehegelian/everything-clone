@@ -80,7 +80,11 @@ pub fn create_hash_index_parallel() -> HashMap<String, FileMetadata> {
         .par_bridge() // Convert iterator to a parallel iterator
         .filter(|entry| entry.file_type().is_file())
         .map(|entry| {
-            let path = entry.path().to_str().unwrap();
+            let path = entry
+                .path()
+                .to_string_lossy()
+                .to_ascii_lowercase()
+                .to_string();
             let metadata = entry.metadata().unwrap();
             let accessed = metadata.accessed().unwrap_or(SystemTime::UNIX_EPOCH);
             let created = metadata.created().unwrap_or(SystemTime::UNIX_EPOCH);
@@ -89,7 +93,11 @@ pub fn create_hash_index_parallel() -> HashMap<String, FileMetadata> {
             (
                 path.to_string(),
                 FileMetadata {
-                    name: entry.file_name().to_string_lossy().to_string(),
+                    name: entry
+                        .file_name()
+                        .to_ascii_lowercase()
+                        .to_string_lossy()
+                        .to_string(),
                     size: metadata.len(),
                     created,
                     modified,

@@ -64,6 +64,7 @@ pub fn create_and_cache_file_index_bin(
         }
         Err(ref e) if e.kind() == std::io::ErrorKind::NotFound => {
             println!("file_index_cache.bincode not found");
+            println!("Hold on...creating file index and caching it in file_index_cache.bincode");
         }
         Err(e) => {
             return Err(e.into());
