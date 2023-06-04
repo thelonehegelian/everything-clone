@@ -2,7 +2,7 @@ mod file_indexers;
 mod file_metadata;
 use std::time::Instant;
 mod file_searchers;
-use file_searchers::{display_results, file_search};
+use file_searchers::{display_results, file_seach_parallel, file_search};
 mod cache_file_index;
 use cache_file_index::create_and_cache_file_index_bin;
 use clap::Parser;
@@ -29,16 +29,28 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // println!("{:?}", file_index[".././web_assembly/game-of-life/www/node_modules/es-abstract/2016/OrdinaryGetOwnProperty.js"]);
     println!("Indexing in Progress...");
     let duration = start.elapsed();
-    println!("Time taken: {} ms", duration.as_millis());
-    // count the number of files in the index
-    println!("Number of files indexed: {}", file_index.len());
+    let time_taken_for_indexing = duration.as_secs_f64();
+    let num_file_indexed = file_index.len();
 
     println!("Searching for files...");
-    let start = Instant::now();
-    let search_result = file_search(file_to_search.as_str(), &file_index);
+    let file_search_start = Instant::now();
+    let search_result = file_seach_parallel(file_to_search.as_str(), &file_index);
+    let files_found = search_result.len();
     display_results(search_result);
-    let duration = start.elapsed();
-    println!("Time taken: {} ms", duration.as_secs_f64());
+    let duration = file_search_start.elapsed();
+    let time_taken_for_file_search = duration.as_secs_f64();
+
+    // create a file called benchmark.txt
+    std::fs::write(
+        "benchmark.txt",
+        format!(
+            "Time taken for indexing: {} seconds\nNumber of files indexed: {}\nTime taken for searching: {} seconds\n Files found: {}\n",
+            time_taken_for_indexing,
+            num_file_indexed,
+            time_taken_for_file_search,
+            files_found
+        ),
+    )?;
 
     Ok(())
 }
