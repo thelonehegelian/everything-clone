@@ -1,6 +1,7 @@
 use crate::file_metadata::FileMetadata;
 use std::collections::HashMap;
 
+// @todo this should be a parallel search function that uses rayon to search the index
 pub fn file_search<'a>(
     query: &str,
     file_index: &'a HashMap<String, FileMetadata>,
