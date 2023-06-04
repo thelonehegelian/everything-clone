@@ -1,4 +1,4 @@
-Time taken for indexing: 6.690739791 seconds
-Number of files indexed: 2363871
-Time taken for searching: 0.3985345 seconds
+Time taken for indexing: 6.828459042 seconds
+Number of files indexed: 2363917
+Time taken for searching: 2.390258708 seconds
  Files found: 12

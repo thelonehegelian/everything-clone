@@ -46,3 +46,18 @@ pub fn display_results(results: Vec<&String>) {
         println!("{}", result);
     }
 }
+
+pub fn file_search_regex<'a>(
+    query: &str,
+    file_index: &'a HashMap<String, FileMetadata>,
+) -> Vec<&'a String> {
+    // regex wildcard case insensitive
+    let regex = Regex::new(&format!("(?i){}", query)).unwrap();
+    let results: Vec<&'a String> = file_index
+        .par_iter()
+        .filter(|(path, _)| regex.is_match(path))
+        .map(|(path, _)| path)
+        .collect();
+
+    results
+}

@@ -1,8 +1,14 @@
+/**
+ * NOTES:
+ * an alternative to making filenames lower case is use sloggy::HashMap, a case insensitive hashmap
+ * Regex has its own performance costs. For now using a wildcard search case insensitive
+ *
+ */
 mod file_indexers;
 mod file_metadata;
 use std::time::Instant;
 mod file_searchers;
-use file_searchers::{display_results, file_search_parallel};
+use file_searchers::{display_results, file_search_parallel, file_search_regex};
 mod cache_file_index;
 use cache_file_index::create_and_cache_file_index_bin;
 use clap::Parser;
@@ -33,7 +39,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     println!("Searching for files...");
     let file_search_start = Instant::now();
-    let search_result = file_search_parallel(file_to_search.as_str(), &file_index);
+    // let search_result = file_search_parallel(file_to_search.as_str(), &file_index);
+    let search_result = file_search_regex(file_to_search.as_str(), &file_index);
     let files_found = search_result.len();
     display_results(search_result);
     let duration = file_search_start.elapsed();
