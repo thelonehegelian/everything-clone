@@ -8,7 +8,7 @@ mod file_indexers;
 mod file_metadata;
 use std::time::Instant;
 mod file_searchers;
-use file_searchers::{display_results, file_search_parallel, file_search_regex};
+use file_searchers::{display_results, file_search_regex};
 mod cache_file_index;
 use cache_file_index::create_and_cache_file_index_bin;
 use clap::Parser;

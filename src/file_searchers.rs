@@ -16,7 +16,7 @@ pub fn file_search_regex<'a>(
     query: &str,
     file_index: &'a HashMap<String, FileMetadata>,
 ) -> Vec<&'a String> {
-    // regex wildcard case insensitive
+    // @note regex wildcard case insensitive
     let regex = Regex::new(&format!("(?i){}", query)).unwrap();
     let results: Vec<&'a String> = file_index
         .par_iter()
@@ -26,3 +26,5 @@ pub fn file_search_regex<'a>(
 
     results
 }
+
+// pub fn folder_search_regex<'a>(query: &str, file_index: &'a HashMap<String, FileMetadata>) {}
