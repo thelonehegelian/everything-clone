@@ -1,7 +1,7 @@
 /**
  * NOTES:
  * an alternative to making filenames lower case is use sloggy::HashMap, a case insensitive hashmap
- * Regex has its own performance costs. For now using a wildcard search case insensitive
+ * Regex has its own performance costs. For now using a regex wildcard search, case insensitive
  *
  */
 mod file_indexers;
