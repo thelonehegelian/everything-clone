@@ -1,5 +1,9 @@
 # CLI-based Everything Clone 
 
+### Usage:
+`cargo run -- --name <filename>`
+
+### TODO
 - [x] file indexing
 - [x] basic file search
 - [x] cache file index
@@ -8,5 +12,3 @@
 - [ ] opening file from the interface
 - [ ] search functionality
 
-- Usage:
-`cargo run -- --name <filename>`
