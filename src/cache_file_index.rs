@@ -94,3 +94,12 @@ fn load_cached_file_index_bin() -> Result<HashMap<String, FileMetadata>, Box<dyn
 
     Ok(file_index)
 }
+
+// fn load_cache_in_chunks() -> Result<HashMap<String, FileMetadata>, Box<dyn std::error::Error>> {
+//     // read file in chunks to avoid reading the entire file into memory
+//     let chunk_size = 1024 * 1024 * 10; // 10 MB
+//     let mut file = File::open("file_index_cache.bincode")?;
+//     let mut reader = io::BufReader::with_capacity(chunk_size, file);
+
+//     Ok(file_index)
+// }
