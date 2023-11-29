@@ -30,18 +30,11 @@ cargo run -- --name <filename>
 
 Contributions from the open-source community are highly encouraged. Whether you want to improve search algorithms, enhance the CLI interface, or work on GUI integration, feel free to fork the repository, make your changes, and submit pull requests.
 
-**TODO List:**
-
-The project includes a TODO list to track ongoing and planned improvements. Your contributions can help check off items on this list and further enhance RapidSearch.
 
 **License:**
 
-This project is open-source and available under the [License Name] License. Please refer to the LICENSE.md file for licensing details.
-
-**Getting Started:**
-
-To get started with RapidSearch, please refer to the comprehensive documentation and installation instructions provided in the README.md file.
+This project is open-source and available under the MIT License. 
 
 **Feedback and Issues:**
 
-If you encounter any issues or have suggestions for improving RapidSearch, please create GitHub issues or engage with the project's community to help us make RapidSearch even better.
+If you encounter any issues or have suggestions for improving RapidSearch, please create a GitHub issue.
